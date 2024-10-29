@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en">
+{% load static %}
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cerulean/bootstrap.min.css" 
+integrity="sha512-dQLT/B7byn2LjN/DN4zeBKpwGV6qbidV0XiMRWQOL7TGrV7FkZFldkGG+DGMU+CQnMTcRZlUI7GMWt1j6akNew=="
+crossorigin="anonymous" />
+<title> Weather Application </title>
+</head>
+<body>
+    <br/><br/><br/>
+    <div id="jumbotron" class="jumbotron" style="text-align: center; margin-top: -50px">
+        <h1 class ="display-4"> Weather Application </h1>
+        <h5> Get your weather condition at instant </h5>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <form method="post" class="col-mid">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" name = "city" placeholder="Choose your City">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Get Weather Conditions</button> 
+                </div>
+            </div>
+        </form>
+    </nav>
+    <br/><br/>
+    <div class="row">
+        {% if CountryCode and Coordinates and Temperature and Pressure and Humidity %}
+        <div class="card-text white bg-light mb-6">
+            <div class="card-body">
+                <h4>
+                    <span class="badge badge-primary">City : </span> {{ City }}
+                </h4>
+                <h4>
+                    <span class="badge badge-primary">Country Code : </span> {{ CountryCode }}
+                </h4>
+                <h4>
+                    <span class="badge badge-primary">Coordinates : </span> {{ Coordinates }}
+                </h4>
+                <h4>
+                    <span class="badge badge-primary">Temperature : </span> {{ Temperature }}
+                </h4>
+                <h4>
+                    <span class="badge badge-primary">Pressure : </span> {{ Pressure }}
+                </h4>
+                <h4>
+                    <span class="badge badge-primary">Humidity : </span> {{ Humidity }}
+                </h4>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
